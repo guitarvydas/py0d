@@ -1,6 +1,9 @@
-to use: make
+to use: 
+```
+make
+```
 
-The repo contains example Python code that uses 0D techniques.  Basically message sending using FIFOs. 
+This repo contains example Python code that uses 0D techniques.  Basically message sending using FIFOs. 
 
 Test.py calls 2 different HelloWorld objects.
 
