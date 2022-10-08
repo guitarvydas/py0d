@@ -17,3 +17,35 @@ Due to the simplicity of this example, the same input is passed into all connect
 
 Start at test.py.
 
+# Diagrams
+## Test
+![Test](doc/test.png)
+
+---
+
+## Container
+![Container](doc/container.png)
+
+---
+
+## Leaf
+![Leaves](doc/leaf.png)
+
+---
+## Routing
+![Leaves](doc/connection-types.png)
+
+---
+
+## Hello World Sequential
+![Hello World Sequential](doc/sequential.png)
+
+---
+
+## Hello World Concurrent
+![Hello World Concurrent](doc/concurrent.png)
+
+---
+
+## Names
+![Component Names](doc/names.png)
