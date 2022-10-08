@@ -49,3 +49,18 @@ Start at test.py.
 
 ## Names
 ![Component Names](doc/names.png)
+
+---
+
+# ė (EH)
+*from "ė - Concurrent Lambdas" working paper 1 (not published ATM)*
+## ė
+As a working title for this concept, I'm going to use `ė`.
+
+It is the Lithuanian letter "e" with a dot above it.
+
+It is pronounced like Canadian "eh" or the English-language letter "A" (hard, not soft).
+
+I almost chose another Greek letter, then realized that I could use any unicode character, then, almost chose a smily emoji, but, finally settled on `ė`.
+
+[The choice is almost arbitrary, but, `ė` ties my two inherited cultures together.]
