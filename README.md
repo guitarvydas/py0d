@@ -54,7 +54,7 @@ Start at test.py.
 
 # ė (EH)
 *from "ė - Concurrent Lambdas" working paper 1 (not published ATM)*
-## ė
+
 As a working title for this concept, I'm going to use `ė`.
 
 It is the Lithuanian letter "e" with a dot above it.
