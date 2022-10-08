@@ -64,3 +64,12 @@ It is pronounced like Canadian "eh" or the English-language letter "A" (hard, no
 I almost chose another Greek letter, then realized that I could use any unicode character, then, almost chose a smily emoji, but, finally settled on `ė`.
 
 [The choice is almost arbitrary, but, `ė` ties my two inherited cultures together.]
+
+# Further
+Transpiling actual diagrams to Python code is done in https://github.com/guitarvydas/eh.
+
+Py0D is more recent (by about 1 week) than the *eh* repo and Py0D is "more presentable" at this moment.  
+
+By "more presentable", I mean that the *py0d* repo is simpler and is a focussed only on how to build 0D components manually.  
+
+The *eh* repo focuses on how to transpile diagrams from `.drawio` format to JSON, then Python and Common Lisp, something which is easier to understand when you already know what an *eh* 0D component looks like.  The *eh* repo contains much more code.
