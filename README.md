@@ -119,4 +119,4 @@ Aside: Structured Programming gave us a way to nest (layer) control flow.  HSMs 
 
 Aside: You can draw sensible drawings of ė Component networks.  You can't draw sensible drawings of synchronous code.  The big (but subtle) difference is 0D - using FIFOs (queues) instead of LIFOs (stacks).  To draw technical diagrams, you need to use FIFOs.  You can use 0D for textual code and skip the technical drawings, if you wish.  I claim that after people get used to the idea of 0D, they will choose to draw programs instead of coding programs up as text.  We'll see...  (Aside: all Real Engineering professions use technical drawings - blueprints, molecule diagrams, electronics schematics, etc.)
 
-duplicated in: https://publish.obsidian.md/programmingsimplicity/2022-11-18-ė+Considerations
+duplicated in: https://publish.obsidian.md/programmingsimplicity/2022-11-18-ė+Principles
