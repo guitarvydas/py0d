@@ -37,7 +37,6 @@ class Container (EH):
     def runToCompletion (self):
         while self.anyChildReady ():
             for child in self._children:
-                print (f'{child.name}: {child._inputq.len ()} {child._inputq.__repr__ ()}')
                 child.handleIfReady ()
                 self.routeOutputs (child)
 
