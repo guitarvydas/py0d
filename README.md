@@ -1,3 +1,5 @@
+(new addition: see https://publish.obsidian.md/programmingsimplicity/Programming+Simplicity+-+Principles/2023-01-21-Example+-+Manual+Trace+With+Feedback)
+
 to use: 
 ```
 make
