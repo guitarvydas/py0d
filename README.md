@@ -1,4 +1,4 @@
-(new addition: see https://publish.obsidian.md/programmingsimplicity/Programming+Simplicity+-+Principles/2023-01-21-Example+-+Manual+Trace+With+Feedback)
+(new addition: see doc/'2023-01-21-Example - Manual Trace With Feedback.pdf')
 
 to use: 
 ```
