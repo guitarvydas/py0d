@@ -30,7 +30,8 @@ class Message (BaseMessage):
                 nm = self._xfrom.name
             return "{%s:'%s','%s', %s->%s}" % (self._direction, self.port, self.data, nm, self.trail)
         else:
-            return "{'%s'}" % (self.port)
+            return "{" + f'{self.port}:{self.data}' + "}"
+            #return "{'%s'}" % (self.port)
 
 
     @property
