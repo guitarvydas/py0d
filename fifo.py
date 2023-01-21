@@ -20,3 +20,6 @@ class FIFO:
 
     def asList (self):
         return list (self._elements)
+
+    def __repr__ (self):
+        return list (self._elements)

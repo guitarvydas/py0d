@@ -1,5 +1,5 @@
 all:
-	python3 test.py
+	python3 fb.py
 
 clean:
 	rm -f *~ junk*
