@@ -1,5 +1,5 @@
-from a import A
+from top import Top
 
-a = A (None, 'a')
-a.start (port='in', data=True)
-print (a.outputs ())
+top = Top (None, 'top')
+top.start (port='in', data=True)
+print (top.outputs ())
