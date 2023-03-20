@@ -6,11 +6,6 @@ from chain import Chain
 class FIFO(Chain):
     def __init__(self):
         self._elements = deque()
-        self.put ('enqueue', self.enqueue)
-        self.put ('dequeue', self.dequeue)
-        self.put ('len', self.len)
-        self.put ('empty?', self.isEmpty)
-        self.put ('asList', self.asList)
 
     def enqueue(self, element):
         return self._elements.append(element)
