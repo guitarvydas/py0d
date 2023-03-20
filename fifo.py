@@ -1,13 +1,19 @@
 # queues.py
 
 from collections import deque
+from chain import Chain
 
-class FIFO:
+class FIFO(Chain):
     def __init__(self):
         self._elements = deque()
+        self.put ('enqueue', self.enqueue)
+        self.put ('dequeue', self.dequeue)
+        self.put ('len', self.len)
+        self.put ('empty?', self.isEmpty)
+        self.put ('asList', self.asList)
 
     def enqueue(self, element):
-        self._elements.append(element)
+        return self._elements.append(element)
 
     def dequeue(self):
         return self._elements.popleft()
