@@ -15,16 +15,16 @@ hw.handle(InputMessage('stdin','Hello'))
 hw.handle(InputMessage('stdin','World'))
 print(hw.outputs())
 
-class WrappedEcho(Echo):
+class WrappedEcho(Container):
     def __init__(self,givenName):
-        super().__init__(f'{givenName}/wrapped')
         children = [Echo('echo0'),Echo('echo1')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
+            Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
             Across(Sender(children[0],'stdout'),Receiver(children[1],'stdin')),
-            Up(Sender(children[1],'stdout'),Receiver(None,'stdout'))
+            Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
             ]
+        super().__init__(f'{givenName}/wrapped')
 whw = WrappedEcho('we')
 print(f'*** {whw.name}')
 whw.handle(InputMessage('stdin','wHello'))
@@ -38,9 +38,9 @@ class WrappedWrappedEcho(WrappedEcho):
         children = [WrappedEcho('wecho0'),WrappedEcho('wecho1')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
+            Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
             Across(Sender(children[0],'stdout'),Receiver(children[1],'stdin')),
-            Up(Sender(children[1],'stdout'),Receiver(None,'stdout'))
+            Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
             ]
 wwhw = WrappedWrappedEcho('ww')
 print(f'*** {wwhw.name}')
@@ -54,10 +54,10 @@ class ParallelWrappedWrappedEcho(WrappedEcho):
         children = [WrappedEcho('pecho0'),WrappedEcho('pecho1')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
-            Down(Sender(None,'stdin'),Receiver(children[1],'stdin')),
-            Up(Sender(children[0],'stdout'),Receiver(None,'stdout')),
-            Up(Sender(children[1],'stdout'),Receiver(None,'stdout'))
+            Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
+            Down(Sender(self,'stdin'),Receiver(children[1],'stdin')),
+            Up(Sender(children[0],'stdout'),Receiver(self,'stdout')),
+            Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
             ]
 phw = WrappedWrappedEcho('par')
 print(f'*** {phw.name}')

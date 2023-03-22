@@ -4,11 +4,10 @@ from message import OutputMessage
 from eh import Eh
 
 class Container(Eh):
-    def __init__(self,givenName,children,connections):
+    def __init__(self,givenName):
         name = f'{givenName}/Container'
         super().__init__(name)
-        self.children = children
-        self.connections = connections
+        # child must supply self.children, self.connections
         
     def handle(self,msg):
         self.routeDownwards(msg.port, msg.datum)
@@ -23,9 +22,9 @@ class Container(Eh):
                 self.routeAndClearOutputsFromSingleChild(child)
 
     def routeAndClearOutputsFromSingleChild(self,child):
-        for output in child.outputsAsList():
+        for output in child.outputs():
             self.routeChildOutput(child, output.port, output.datum)
-        child.clear-outputs()
+        child.clearOutputs()
 
     def routeChildOutput(self, frm, port, datum):
         # a child can produce messages only for other children (across), and,
@@ -33,7 +32,7 @@ class Container(Eh):
         # down and through cannot apply here
         self.route(frm, port, datum)
 
-    def routeDownwards(self, frm, port, datum):
+    def routeDownwards(self, port, datum):
         # an input message to a container can go 2 places: (1) to a child(ren), or
         # (2) to its own output (Down and Through, resp).
         # across and up cannot apply here
