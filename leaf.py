@@ -2,7 +2,7 @@ from eh import Eh
 
 class Leaf (Eh):
     def __init__(self, givenName):
-        name = f'{givenName}/Leaf'
+        name = f'[Leaf/{givenName}]'
         super().__init__(name)
 
 

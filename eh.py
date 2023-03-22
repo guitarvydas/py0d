@@ -5,7 +5,7 @@ class Eh ():
     def __init__ (self, given_name):
         self.inq = FIFO ()
         self.outq = FIFO ()
-        self.name = f'{given_name}/Eh'
+        self.name = f'[Eh/{given_name}]'
 
     def enqueueInput (self, x):
         return self.inq.enqueue(x)

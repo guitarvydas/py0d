@@ -12,63 +12,61 @@ from connection import Receiver
 hw = Echo('hw')
 print(f'*** {hw.name}')
 hw.handle(InputMessage('stdin','Hello'))
-# hw.handle(InputMessage('stdin','World'))
 print(hw.outputs())
 
 class WrappedEcho(Container):
     def __init__(self,givenName):
-        children = [Echo('echo0')]
+        children = [Echo('0')]
         self.children = children
         self.connections = [
             Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
             Up(Sender(children[0],'stdout'),Receiver(self,'stdout'))
             ]
-        super().__init__(f'{givenName}/wrapped')
+        super().__init__(f'[wrapped/{givenName}]')
 whw = WrappedEcho('we')
 print()
 print(f'*** {whw.name}')
 whw.handle(InputMessage('stdin','wHello'))
-# whw.handle(InputMessage('stdin','wWorld'))
 print(whw.outputs())
 
 
-class WrappedWrappedEcho(WrappedEcho):
+class WrappedEcho2(Container):
     def __init__(self,givenName):
-        super().__init__(f'{givenName}/wrappedwrapped')
-        children = [WrappedEcho('wecho2')]
+        children = [Echo('10'),Echo('11')]
         self.children = children
         self.connections = [
             Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
-            Up(Sender(children[0],'stdout'),Receiver(self,'stdout'))
+            Across(Sender(children[0],'stdout'),Receiver(children[1],'stdin')),
+            Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
             ]
-wwhw = WrappedWrappedEcho('ww')
+        super().__init__(f'[wrapped/{givenName}]')
+we2 = WrappedEcho2('we2')
 print()
-print(f'*** {wwhw.name}')
-wwhw.handle(InputMessage('stdin','wwHello'))
-# wwhw.handle(InputMessage('stdin','wwWorld'))
-print(wwhw.outputs())
+print(f'*** {we2.name}')
+we2.handle(InputMessage('stdin','wHello'))
+print(we2.outputs())
 
-# class WrappedEcho2(Container):
+
+# class WrappedWrappedEcho(WrappedEcho):
 #     def __init__(self,givenName):
-#         children = [Echo('echo10'),Echo('echo11')]
+#         super().__init__(f'[wrappedWrapped/{givenName}]')
+#         children = [WrappedEcho('wecho2')]
 #         self.children = children
 #         self.connections = [
 #             Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
-#             Across(Sender(children[0],'stdout'),Receiver(children[1],'stdin')),
-#             Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
+#             Up(Sender(children[0],'stdout'),Receiver(self,'stdout'))
 #             ]
-#         super().__init__(f'{givenName}/wrapped')
-# we2 = WrappedEcho('we2')
+# wwhw = WrappedWrappedEcho('ww')
 # print()
-# print(f'*** {we2.name}')
-# we2.handle(InputMessage('stdin','wHello'))
-# # we2.handle(InputMessage('stdin','wWorld'))
-# print(we2.outputs())
+# print(f'*** {wwhw.name}')
+# wwhw.handle(InputMessage('stdin','wwHello'))
+# # wwhw.handle(InputMessage('stdin','wwWorld'))
+# print(wwhw.outputs())
 
 
 # class ParallelWrappedWrappedEcho(WrappedEcho):
 #     def __init__(self,givenName):
-#         super().__init__(f'{givenName}/pww')
+#         super().__init__(f'[pww/{givenName}]')
 #         children = [WrappedEcho('pecho4'),WrappedEcho('pecho5')]
 #         self.children = children
 #         self.connections = [

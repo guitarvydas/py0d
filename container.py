@@ -5,7 +5,7 @@ from eh import Eh
 
 class Container(Eh):
     def __init__(self,givenName):
-        name = f'{givenName}/Container'
+        name = f'[Container/{givenName}]'
         super().__init__(name)
         # child must supply self.children, self.connections
         
@@ -16,7 +16,7 @@ class Container(Eh):
 
     def dispatchAllChildren(self):
         for child in self.children:
-            if (not child.isInputEmpty()):
+            if (isReady(child)):
                 msg = child.dequeueInput()
                 child.handle(msg)
                 self.routeAndClearOutputsFromSingleChild(child)
@@ -47,6 +47,9 @@ class Container(Eh):
     def isAnyChildReady(self):
         result = False
         for child in self.children:
-            if (not child.isInputEmpty() or not child.isOutputEmpty()):
+            if (isReady(child)):
                 result = True
         return result
+
+def isReady(child):
+    return not child.isInputEmpty() or not child.isOutputEmpty()
