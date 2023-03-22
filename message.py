@@ -13,9 +13,13 @@ class InputMessage (Message):
     def __init__ (self, port, v):
         super ().__init__ (v)
         self.port = port
+    def __repr__(self):
+        return f'<{self.port},{self.datum}>'
 
 class OutputMessage (Message):
     def __init__ (self, port, v):
         super ().__init__ (v)
         self.port = port
+    def __repr__(self):
+        return f'<{self.port},{self.datum}>'
 
