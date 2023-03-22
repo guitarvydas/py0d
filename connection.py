@@ -29,27 +29,23 @@ class Down (Connector):
     def __init__ (self, sender, receiver):
         super().__init__ (sender, receiver)
     def deposit (self, datum):
-        print(f'Down {self.sender.component.name}')
         self.receiver.component.enqueueInput (InputMessage (self.receiver.port, datum))
 
 class Up (Connector):
     def __init__ (self, sender, receiver):
         super().__init__ (sender, receiver)
     def deposit (self, datum):
-        print(f'Up {self.sender.component.name}')
         self.receiver.component.enqueueOutput (OutputMessage (self.receiver.port, datum))
 
 class Across (Connector):
     def __init__ (self, sender, receiver):
         super().__init__ (sender, receiver)
     def deposit (self, datum):
-        print(f'Across {self.sender.component.name}')
         self.receiver.component.enqueueInput (InputMessage (self.receiver.port, datum))
 
 class Through (Connector):
     def __init__ (self, sender, receiver):
         super().__init__ (sender, receiver)
     def deposit (self, datum):
-        print(f'Through {self.sender.component.name}')
         self.receiver.component.enqueueOutput (OutputMessage (self.receiver.port, datum))
 

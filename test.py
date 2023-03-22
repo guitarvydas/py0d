@@ -79,30 +79,24 @@ par = ParEcho('par')
 print()
 print(f'*** {par.name}')
 par.handle(InputMessage('stdin','pHello'))
-par.handle(InputMessage('stdin','pWorld'))
 print(par.outputs())
 
-
-
-
-
-# class ParallelWrappedWrappedEcho(WrappedEcho):
-#     def __init__(self,givenName):
-#         super().__init__(f'[pww/{givenName}]')
-#         children = [WrappedEcho('pecho4'),WrappedEcho('pecho5')]
-#         self.children = children
-#         self.connections = [
-#             Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
-# #            Down(Sender(self,'stdin'),Receiver(children[1],'stdin')),
-#             Up(Sender(children[0],'stdout'),Receiver(self,'stdout')),
-# #            Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
-#             ]
-        
-# phw = WrappedWrappedEcho('par')
-# print()
-# print(f'*** {phw.name}')
-# phw.handle(InputMessage('stdin','pHello'))
-# # phw.handle(InputMessage('stdin','pWorld'))
-# print(phw.outputs())
+class PWEcho(Container):
+    def __init__(self,givenName):
+        children = [WrappedEcho('30'),WrappedEcho('31')]
+        self.children = children
+        self.connections = [
+            Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
+            Down(Sender(self,'stdin'),Receiver(children[1],'stdin')),
+            Up(Sender(children[0],'stdout'),Receiver(self,'stdout')),
+            Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
+            ]
+        super().__init__(f'[pw/{givenName}]')
+pw = PWEcho('pw')
+print()
+print(f'*** {pw.name}')
+pw.handle(InputMessage('stdin','pwHello'))
+pw.handle(InputMessage('stdin','pwWorld'))
+print(pw.outputs())
 
 
