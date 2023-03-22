@@ -64,6 +64,28 @@ wwhw.handle(InputMessage('stdin','wwHello'))
 print(wwhw.outputs())
 
 
+class ParEcho(Container):
+    def __init__(self,givenName):
+        children = [Echo('20'),Echo('21')]
+        self.children = children
+        self.connections = [
+            Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
+            Down(Sender(self,'stdin'),Receiver(children[1],'stdin')),
+            Up(Sender(children[0],'stdout'),Receiver(self,'stdout')),
+            Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
+            ]
+        super().__init__(f'[par/{givenName}]')
+par = ParEcho('par')
+print()
+print(f'*** {par.name}')
+par.handle(InputMessage('stdin','pHello'))
+par.handle(InputMessage('stdin','pWorld'))
+print(par.outputs())
+
+
+
+
+
 # class ParallelWrappedWrappedEcho(WrappedEcho):
 #     def __init__(self,givenName):
 #         super().__init__(f'[pww/{givenName}]')
