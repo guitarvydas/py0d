@@ -47,6 +47,6 @@ class Container(Eh):
     def isAnyChildReady(self):
         result = False
         for child in self.children:
-            if (not child.isInputEmpty()):
+            if (not child.isInputEmpty() or not child.isOutputEmpty()):
                 result = True
         return result
