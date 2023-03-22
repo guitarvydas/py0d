@@ -23,25 +23,25 @@ class Connector:
 
 class Down (Connector):
     def __init__ (self, sender, receiver):
-        super.__init__ (sender, receiver)
+        super().__init__ (sender, receiver)
     def deposit (self, datum):
         self.receiver.enqueueInput (InputMessage (receiver.port, datum))
 
 class Up (Connector):
     def __init__ (self, sender, receiver):
-        super.__init__ (sender, receiver)
+        super().__init__ (sender, receiver)
     def deposit (self, datum):
         self.receiver.enqueueOutput (OutputMessage (receiver.port, datum))
 
 class Across (Connector):
     def __init__ (self, sender, receiver):
-        super.__init__ (sender, receiver)
+        super().__init__ (sender, receiver)
     def deposit (self, datum):
         self.receiver.enqueueInput (InputMessage (receiver.port, datum))
 
 class Through (Connector):
     def __init__ (self, sender, receiver):
-        super.__init__ (sender, receiver)
+        super().__init__ (sender, receiver)
     def deposit (self, datum):
         self.receiver.enqueueOutput (OutputMessage (receiver.port, datum))
 
