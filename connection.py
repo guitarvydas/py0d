@@ -1,4 +1,4 @@
-;; exported low-level constructors
+# exported low-level constructors
 
 class Sender:
     def __init__ (self, component, port):

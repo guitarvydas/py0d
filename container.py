@@ -1,7 +1,7 @@
-from sender import Sender
+from connection import Sender
 from message import InputMessage
 from message import OutputMessage
-from eh import EH
+from eh import Eh
 
 class Container(Eh):
     def __init__(self,givenName,children,connections):
@@ -23,7 +23,7 @@ class Container(Eh):
                 self.routeAndClearOutputsFromSingleChild(child)
 
     def routeAndClearOutputsFromSingleChild(self,child):
-        for output in child.outputsAsList()
+        for output in child.outputsAsList():
             self.routeChildOutput(child, output.port, output.datum)
         child.clear-outputs()
 

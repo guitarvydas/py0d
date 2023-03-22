@@ -26,15 +26,16 @@ class Eh ():
         return self.outq.isEmpty()
 
     def clearOutputs (self):
-        return self.outq = FIFO()
+        self.outq = FIFO()
+        return []
 
     def send(self, port, datum):
-        return outq.enqueue(OutputMessage(port, datum))
+        return self.outq.enqueue(OutputMessage(port, datum))
 
-    def outputsAsList (self):
+    def outputs(self):
+        # return output queue as a list
         return self.outq.asList()
 
     def forEachOutput (self, f):
         for output in self.outq:
             f(self,output)
-        self.put ('for-each-output', self._for_each_output)

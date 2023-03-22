@@ -1,10 +1,9 @@
-from eh import EH
+from eh import Eh
 
 class Leaf (Eh):
-    def __init__(self, ancestor, givenName, f):
+    def __init__(self, givenName):
         name = f'{givenName}/Leaf'
         super().__init__(name)
-        self.synchronousFunction = f
 
-    def handle(self,msg):
-        return self.synchronousFunction(msg)
+
+# descendents must implement handle(message)

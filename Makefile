@@ -1,7 +1,4 @@
-all: feedbackTest test
-
-feedbackTest:
-	python3 fb.py
+all: test
 
 test:
 	python3 test.py

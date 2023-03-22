@@ -1,9 +1,8 @@
 # queues.py
 
 from collections import deque
-from chain import Chain
 
-class FIFO(Chain):
+class FIFO:
     def __init__(self):
         self._elements = deque()
 
