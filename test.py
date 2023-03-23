@@ -100,3 +100,36 @@ pw.handle(InputMessage('stdin','pwWorld'))
 print(pw.outputs())
 
 
+class A(Leaf):
+    def handle(self, message):
+        self.send(port='stdout',datum='v')
+        self.send(port='stdout',datum='w')
+
+class B(Leaf):
+    def handle(self, message):
+        if (message.port == 'stdin'):
+            self.send(port='stdout',datum=message.datum)
+            self.send(port='feedback',datum='z')
+        elif (message.port == 'fback'):
+            self.send(port='stdout',datum=message.datum)
+
+class FeedbackTest(Container):
+    def __init__(self,givenName):
+        children = [A('a'),B('b')]
+        connections = [
+            Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
+            Across(Sender(children[0],'stdout'),Receiver(children[1],'stdin')),
+            Across(Sender(children[1],'feedback'),Receiver(children[1],'fback')),
+            Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
+        ]
+        self.children = children
+        self.connections = connections
+        super().__init__(f'[FeedbackTest/{givenName}]')
+
+print()
+print('*** Feedback ')
+fb = FeedbackTest('feebacktest')
+fb.handle(InputMessage('stdin',True))
+print(fb.outputs())
+
+            
