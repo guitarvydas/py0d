@@ -1,20 +1,9 @@
-from eh import EH
-from state import State
-from porthandler import PortHandler
+from eh import Eh
 
-class Leaf (EH):
-    def __init__ (self, parent, name):
-        defaultStateName = 'default'
-        h = PortHandler ('*', self.__handler__)
-        s = State (machine=self, name=defaultStateName, enter=None, handlers=[h], exit=None, childMachine=None)
-        super ().__init__ (parent = parent,
-                           name = name,
-                           defaultStateName = defaultStateName,
-                           enter = self.noop,
-                           exit = self.noop,
-                           states = [s])
+class Leaf (Eh):
+    def __init__(self, givenName):
+        name = f'[Leaf/{givenName}]'
+        super().__init__(name)
 
-    def noop (self):
-        pass
-    
-    
+
+# descendents must implement handle(message)

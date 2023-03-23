@@ -7,7 +7,7 @@ class FIFO:
         self._elements = deque()
 
     def enqueue(self, element):
-        self._elements.append(element)
+        return self._elements.append(element)
 
     def dequeue(self):
         return self._elements.popleft()
