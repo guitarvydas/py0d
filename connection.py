@@ -13,13 +13,13 @@ class Sender:
         self.token = genUniqueToken(component, port)
 
 class InputReceiver:
-    def __init__ (self, component, port):
-        self.component = component
+    def __init__ (self, queue, port):
+        self.queue = queue
         self.port = port
 
 class OutputReceiver:
-    def __init__ (self, component, port):
-        self.component = component
+    def __init__ (self, queue, port):
+        self.queue = queue
         self.port = port
 
 class Connector:
@@ -37,23 +37,23 @@ class Down (Connector):
     def __init__ (self, sender, receiver):
         super().__init__ (sender, receiver)
     def deposit (self, datum):
-        self.receiver.component.enqueueInput (InputMessage (self.receiver.port, datum))
+        self.receiver.queue.enqueue (InputMessage (self.receiver.port, datum))
 
 class Up (Connector):
     def __init__ (self, sender, receiver):
         super().__init__ (sender, receiver)
     def deposit (self, datum):
-        self.receiver.component.enqueueOutput (OutputMessage (self.receiver.port, datum))
+        self.receiver.queue.enqueue (OutputMessage (self.receiver.port, datum))
 
 class Across (Connector):
     def __init__ (self, sender, receiver):
         super().__init__ (sender, receiver)
     def deposit (self, datum):
-        self.receiver.component.enqueueInput (InputMessage (self.receiver.port, datum))
+        self.receiver.queue.enqueue (InputMessage (self.receiver.port, datum))
 
 class Through (Connector):
     def __init__ (self, sender, receiver):
         super().__init__ (sender, receiver)
     def deposit (self, datum):
-        self.receiver.component.enqueueOutput (OutputMessage (self.receiver.port, datum))
+        self.receiver.queue.enqueue (OutputMessage (self.receiver.port, datum))
 

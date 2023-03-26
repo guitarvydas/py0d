@@ -17,13 +17,13 @@ print(hw.outputs())
 
 class WrappedEcho(Container):
     def __init__(self,givenName):
+        super().__init__(f'[wrapped/{givenName}]')
         children = [Echo('0')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),InputReceiver(children[0],'stdin')),
-            Up(Sender(children[0],'stdout'),OutputReceiver(self,'stdout'))
+            Down(Sender(None,'stdin'),InputReceiver(children[0].inq,'stdin')),
+            Up(Sender(children[0],'stdout'),OutputReceiver(self.outq,'stdout'))
             ]
-        super().__init__(f'[wrapped/{givenName}]')
 whw = WrappedEcho('we')
 print()
 print(f'*** {whw.name}')
@@ -33,14 +33,14 @@ print(whw.outputs())
 
 class WrappedEcho2(Container):
     def __init__(self,givenName):
+        super().__init__(f'[wrapped/{givenName}]')
         children = [Echo('10'),Echo('11')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),InputReceiver(children[0],'stdin')),
-            Across(Sender(children[0],'stdout'),InputReceiver(children[1],'stdin')),
-            Up(Sender(children[1],'stdout'),OutputReceiver(self,'stdout'))
+            Down(Sender(None,'stdin'),InputReceiver(children[0].inq,'stdin')),
+            Across(Sender(children[0],'stdout'),InputReceiver(children[1].inq,'stdin')),
+            Up(Sender(children[1],'stdout'),OutputReceiver(self.outq,'stdout'))
             ]
-        super().__init__(f'[wrapped/{givenName}]')
 we2 = WrappedEcho2('we2')
 print()
 print(f'*** {we2.name}')
@@ -54,8 +54,8 @@ class WrappedWrappedEcho(WrappedEcho):
         children = [WrappedEcho('wecho2')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),InputReceiver(children[0],'stdin')),
-            Up(Sender(children[0],'stdout'),OutputReceiver(self,'stdout'))
+            Down(Sender(None,'stdin'),InputReceiver(children[0].inq,'stdin')),
+            Up(Sender(children[0],'stdout'),OutputReceiver(self.outq,'stdout'))
             ]
 wwhw = WrappedWrappedEcho('ww')
 print()
@@ -67,15 +67,15 @@ print(wwhw.outputs())
 
 class ParEcho(Container):
     def __init__(self,givenName):
+        super().__init__(f'[par/{givenName}]')
         children = [Echo('20'),Echo('21')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),InputReceiver(children[0],'stdin')),
-            Down(Sender(None,'stdin'),InputReceiver(children[1],'stdin')),
-            Up(Sender(children[0],'stdout'),OutputReceiver(self,'stdout')),
-            Up(Sender(children[1],'stdout'),OutputReceiver(self,'stdout'))
+            Down(Sender(None,'stdin'),InputReceiver(children[0].inq,'stdin')),
+            Down(Sender(None,'stdin'),InputReceiver(children[1].inq,'stdin')),
+            Up(Sender(children[0],'stdout'),OutputReceiver(self.outq,'stdout')),
+            Up(Sender(children[1],'stdout'),OutputReceiver(self.outq,'stdout'))
             ]
-        super().__init__(f'[par/{givenName}]')
 par = ParEcho('par')
 print()
 print(f'*** {par.name}')
@@ -84,15 +84,15 @@ print(par.outputs())
 
 class PWEcho(Container):
     def __init__(self,givenName):
+        super().__init__(f'[pw/{givenName}]')
         children = [WrappedEcho('30'),WrappedEcho('31')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),InputReceiver(children[0],'stdin')),
-            Down(Sender(None,'stdin'),InputReceiver(children[1],'stdin')),
-            Up(Sender(children[0],'stdout'),OutputReceiver(self,'stdout')),
-            Up(Sender(children[1],'stdout'),OutputReceiver(self,'stdout'))
+            Down(Sender(None,'stdin'),InputReceiver(children[0].inq,'stdin')),
+            Down(Sender(None,'stdin'),InputReceiver(children[1].inq,'stdin')),
+            Up(Sender(children[0],'stdout'),OutputReceiver(self.outq,'stdout')),
+            Up(Sender(children[1],'stdout'),OutputReceiver(self.outq,'stdout'))
             ]
-        super().__init__(f'[pw/{givenName}]')
 pw = PWEcho('pw')
 print()
 print(f'*** {pw.name}')
@@ -116,16 +116,16 @@ class B(Leaf):
 
 class FeedbackTest(Container):
     def __init__(self,givenName):
+        super().__init__(f'[FeedbackTest/{givenName}]')
         children = [A('a'),B('b')]
         connections = [
-            Down(Sender(None,'stdin'),InputReceiver(children[0],'stdin')),
-            Across(Sender(children[0],'stdout'),InputReceiver(children[1],'stdin')),
-            Across(Sender(children[1],'feedback'),InputReceiver(children[1],'fback')),
-            Up(Sender(children[1],'stdout'),OutputReceiver(self,'stdout'))
+            Down(Sender(None,'stdin'),InputReceiver(children[0].inq,'stdin')),
+            Across(Sender(children[0],'stdout'),InputReceiver(children[1].inq,'stdin')),
+            Across(Sender(children[1],'feedback'),InputReceiver(children[1].inq,'fback')),
+            Up(Sender(children[1],'stdout'),OutputReceiver(self.outq,'stdout'))
         ]
         self.children = children
         self.connections = connections
-        super().__init__(f'[FeedbackTest/{givenName}]')
 
 print()
 print('*** Feedback ')
