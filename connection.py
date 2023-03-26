@@ -12,7 +12,12 @@ class Sender:
         self.port = port
         self.token = genUniqueToken(component, port)
 
-class Receiver:
+class InputReceiver:
+    def __init__ (self, component, port):
+        self.component = component
+        self.port = port
+
+class OutputReceiver:
     def __init__ (self, component, port):
         self.component = component
         self.port = port

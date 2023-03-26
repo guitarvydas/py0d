@@ -7,7 +7,8 @@ from connection import Up
 from connection import Across
 from connection import Through
 from connection import Sender
-from connection import Receiver
+from connection import InputReceiver
+from connection import OutputReceiver
 
 hw = Echo('hw')
 print(f'*** {hw.name}')
@@ -19,8 +20,8 @@ class WrappedEcho(Container):
         children = [Echo('0')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
-            Up(Sender(children[0],'stdout'),Receiver(self,'stdout'))
+            Down(Sender(None,'stdin'),InputReceiver(children[0],'stdin')),
+            Up(Sender(children[0],'stdout'),OutputReceiver(self,'stdout'))
             ]
         super().__init__(f'[wrapped/{givenName}]')
 whw = WrappedEcho('we')
@@ -35,9 +36,9 @@ class WrappedEcho2(Container):
         children = [Echo('10'),Echo('11')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
-            Across(Sender(children[0],'stdout'),Receiver(children[1],'stdin')),
-            Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
+            Down(Sender(None,'stdin'),InputReceiver(children[0],'stdin')),
+            Across(Sender(children[0],'stdout'),InputReceiver(children[1],'stdin')),
+            Up(Sender(children[1],'stdout'),OutputReceiver(self,'stdout'))
             ]
         super().__init__(f'[wrapped/{givenName}]')
 we2 = WrappedEcho2('we2')
@@ -53,8 +54,8 @@ class WrappedWrappedEcho(WrappedEcho):
         children = [WrappedEcho('wecho2')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
-            Up(Sender(children[0],'stdout'),Receiver(self,'stdout'))
+            Down(Sender(None,'stdin'),InputReceiver(children[0],'stdin')),
+            Up(Sender(children[0],'stdout'),OutputReceiver(self,'stdout'))
             ]
 wwhw = WrappedWrappedEcho('ww')
 print()
@@ -69,10 +70,10 @@ class ParEcho(Container):
         children = [Echo('20'),Echo('21')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
-            Down(Sender(None,'stdin'),Receiver(children[1],'stdin')),
-            Up(Sender(children[0],'stdout'),Receiver(self,'stdout')),
-            Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
+            Down(Sender(None,'stdin'),InputReceiver(children[0],'stdin')),
+            Down(Sender(None,'stdin'),InputReceiver(children[1],'stdin')),
+            Up(Sender(children[0],'stdout'),OutputReceiver(self,'stdout')),
+            Up(Sender(children[1],'stdout'),OutputReceiver(self,'stdout'))
             ]
         super().__init__(f'[par/{givenName}]')
 par = ParEcho('par')
@@ -86,10 +87,10 @@ class PWEcho(Container):
         children = [WrappedEcho('30'),WrappedEcho('31')]
         self.children = children
         self.connections = [
-            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
-            Down(Sender(None,'stdin'),Receiver(children[1],'stdin')),
-            Up(Sender(children[0],'stdout'),Receiver(self,'stdout')),
-            Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
+            Down(Sender(None,'stdin'),InputReceiver(children[0],'stdin')),
+            Down(Sender(None,'stdin'),InputReceiver(children[1],'stdin')),
+            Up(Sender(children[0],'stdout'),OutputReceiver(self,'stdout')),
+            Up(Sender(children[1],'stdout'),OutputReceiver(self,'stdout'))
             ]
         super().__init__(f'[pw/{givenName}]')
 pw = PWEcho('pw')
@@ -117,10 +118,10 @@ class FeedbackTest(Container):
     def __init__(self,givenName):
         children = [A('a'),B('b')]
         connections = [
-            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
-            Across(Sender(children[0],'stdout'),Receiver(children[1],'stdin')),
-            Across(Sender(children[1],'feedback'),Receiver(children[1],'fback')),
-            Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
+            Down(Sender(None,'stdin'),InputReceiver(children[0],'stdin')),
+            Across(Sender(children[0],'stdout'),InputReceiver(children[1],'stdin')),
+            Across(Sender(children[1],'feedback'),InputReceiver(children[1],'fback')),
+            Up(Sender(children[1],'stdout'),OutputReceiver(self,'stdout'))
         ]
         self.children = children
         self.connections = connections
