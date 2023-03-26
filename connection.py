@@ -18,12 +18,15 @@ class Connector:
         self.sender = sender
         self.receiver = receiver
 
+    # def sender_matches (self, other):
+    #     if (isinstance (other, Sender)):
+    #         return (self.sender.component == other.component and 
+    #                 self.sender.port == other.port)
+    #     else:
+    #         return False
+
     def sender_matches (self, other):
-        if (isinstance (other, Sender)):
-            return (self.sender.component == other.component and 
-                    self.sender.port == other.port)
-        else:
-            return False
+        return (self.sender.component, self.sender.port) == (other.component, other.port)
 
 class Down (Connector):
     def __init__ (self, sender, receiver):
