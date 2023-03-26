@@ -7,6 +7,7 @@ class Sender:
     def __init__ (self, component, port):
         self.component = component
         self.port = port
+        self.token = hash ((component, port))
 
 class Receiver:
     def __init__ (self, component, port):
@@ -18,15 +19,14 @@ class Connector:
         self.sender = sender
         self.receiver = receiver
 
-    # def sender_matches (self, other):
-    #     if (isinstance (other, Sender)):
-    #         return (self.sender.component == other.component and 
-    #                 self.sender.port == other.port)
-    #     else:
-    #         return False
-
     def sender_matches (self, other):
-        return (self.sender.component, self.sender.port) == (other.component, other.port)
+        # return (self.sender.component, self.sender.port) == (other.component, other.port)
+        if (isinstance (self.sender, Sender) and isinstance (other, Sender)):
+            # print (f'{(self.sender.component, self.sender.port) == (other.component, other.port)} {self.sender.token == other.token}')
+            # return (self.sender.component, self.sender.port) == (other.component, other.port)
+            return self.sender.token == other.token
+        else:
+            return False
 
 class Down (Connector):
     def __init__ (self, sender, receiver):
