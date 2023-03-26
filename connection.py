@@ -3,11 +3,14 @@
 from message import OutputMessage
 from message import InputMessage
 
+def genUniqueToken (component, port):
+    return hash( (component, port) )
+
 class Sender:
     def __init__ (self, component, port):
         self.component = component
         self.port = port
-        self.token = hash ((component, port))
+        self.token = genUniqueToken(component, port)
 
 class Receiver:
     def __init__ (self, component, port):
@@ -20,10 +23,7 @@ class Connector:
         self.receiver = receiver
 
     def sender_matches (self, other):
-        # return (self.sender.component, self.sender.port) == (other.component, other.port)
         if (isinstance (self.sender, Sender) and isinstance (other, Sender)):
-            # print (f'{(self.sender.component, self.sender.port) == (other.component, other.port)} {self.sender.token == other.token}')
-            # return (self.sender.component, self.sender.port) == (other.component, other.port)
             return self.sender.token == other.token
         else:
             return False

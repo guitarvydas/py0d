@@ -19,7 +19,7 @@ class WrappedEcho(Container):
         children = [Echo('0')]
         self.children = children
         self.connections = [
-            Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
+            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
             Up(Sender(children[0],'stdout'),Receiver(self,'stdout'))
             ]
         super().__init__(f'[wrapped/{givenName}]')
@@ -35,7 +35,7 @@ class WrappedEcho2(Container):
         children = [Echo('10'),Echo('11')]
         self.children = children
         self.connections = [
-            Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
+            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
             Across(Sender(children[0],'stdout'),Receiver(children[1],'stdin')),
             Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
             ]
@@ -53,7 +53,7 @@ class WrappedWrappedEcho(WrappedEcho):
         children = [WrappedEcho('wecho2')]
         self.children = children
         self.connections = [
-            Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
+            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
             Up(Sender(children[0],'stdout'),Receiver(self,'stdout'))
             ]
 wwhw = WrappedWrappedEcho('ww')
@@ -69,8 +69,8 @@ class ParEcho(Container):
         children = [Echo('20'),Echo('21')]
         self.children = children
         self.connections = [
-            Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
-            Down(Sender(self,'stdin'),Receiver(children[1],'stdin')),
+            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
+            Down(Sender(None,'stdin'),Receiver(children[1],'stdin')),
             Up(Sender(children[0],'stdout'),Receiver(self,'stdout')),
             Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
             ]
@@ -86,8 +86,8 @@ class PWEcho(Container):
         children = [WrappedEcho('30'),WrappedEcho('31')]
         self.children = children
         self.connections = [
-            Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
-            Down(Sender(self,'stdin'),Receiver(children[1],'stdin')),
+            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
+            Down(Sender(None,'stdin'),Receiver(children[1],'stdin')),
             Up(Sender(children[0],'stdout'),Receiver(self,'stdout')),
             Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))
             ]
@@ -117,7 +117,7 @@ class FeedbackTest(Container):
     def __init__(self,givenName):
         children = [A('a'),B('b')]
         connections = [
-            Down(Sender(self,'stdin'),Receiver(children[0],'stdin')),
+            Down(Sender(None,'stdin'),Receiver(children[0],'stdin')),
             Across(Sender(children[0],'stdout'),Receiver(children[1],'stdin')),
             Across(Sender(children[1],'feedback'),Receiver(children[1],'fback')),
             Up(Sender(children[1],'stdout'),Receiver(self,'stdout'))

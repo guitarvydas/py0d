@@ -36,7 +36,7 @@ class Container(Eh):
         # an input message to a container can go 2 places: (1) to a child(ren), or
         # (2) to its own output (Down and Through, resp).
         # across and up cannot apply here
-        self.route(self, port, datum)
+        self.route(None, port, datum)
 
     def route(self, frm, port, datum):
         fromSender = Sender(frm, port)
