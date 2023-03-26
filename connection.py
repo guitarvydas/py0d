@@ -8,8 +8,6 @@ def genUniqueToken (component, port):
 
 class Sender:
     def __init__ (self, component, port):
-        self.component = component
-        self.port = port
         self.token = genUniqueToken(component, port)
 
     def __eq__ (self, other):
