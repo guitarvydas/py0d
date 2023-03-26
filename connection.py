@@ -12,6 +12,12 @@ class Sender:
         self.port = port
         self.token = genUniqueToken(component, port)
 
+    def __eq__ (self, other):
+        if (isinstance(other,Sender)):
+            return self.token == other.token
+        else:
+            return False
+
 class Receiver:
     def __init__ (self, queue, port):
         self.queue = queue
@@ -23,10 +29,7 @@ class Connector:
         self.receiver = receiver
 
     def sender_matches (self, other):
-        if (isinstance (self.sender, Sender) and isinstance (other, Sender)):
-            return self.sender.token == other.token
-        else:
-            return False
+        return self.sender == other
 
 class Down (Connector):
     def __init__ (self, sender, receiver):
