@@ -11,11 +11,9 @@
             "id": "a16debfd9face661",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "tests.md",
-                "mode": "source",
-                "source": false
+                "file": "Excalidraw/tests 2023-04-02 07.52.46.excalidraw.md"
               }
             }
           }
@@ -85,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "tests.md",
+                "file": "Excalidraw/tests 2023-04-02 07.52.46.excalidraw.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +100,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "tests.md",
+                "file": "Excalidraw/tests 2023-04-02 07.52.46.excalidraw.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +123,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "tests.md"
+                "file": "Excalidraw/tests 2023-04-02 07.52.46.excalidraw.md"
               }
             }
           }
@@ -150,8 +148,14 @@
   "active": "a16debfd9face661",
   "lastOpenFiles": [
     "tests.md",
-    "Excalidraw/tests 2023-03-22 16.30.08.excalidraw.png",
+    "Excalidraw/tests 2023-04-02 08.35.26.excalidraw.md",
+    "Excalidraw/tests 2023-04-02 08.35.26.excalidraw.png",
+    "Excalidraw/tests 2023-04-02 07.52.46.excalidraw.md",
+    "Excalidraw/tests 2023-04-02 07.52.46.excalidraw.png",
+    "Excalidraw/tests 2023-04-02 07.17.47.excalidraw.png",
+    "Excalidraw/tests 2023-04-02 07.17.47.excalidraw.md",
     "Excalidraw/tests 2023-03-22 16.30.08.excalidraw.md",
+    "Excalidraw/tests 2023-03-22 16.30.08.excalidraw.png",
     "Excalidraw",
     "feedback.png"
   ]
