@@ -1,63 +1,55 @@
-from sender import Sender
-from inputmessage import InputMessage
-from outputmessage import OutputMessage
-from topmessage import TopMessage
-from porthandler import PortHandler
-from state import State
-from eh import EH
+from connection import Sender
+from message import InputMessage
+from message import OutputMessage
+from eh import Eh
 
-debugRouting = True
-
-class Container (EH):
-    def __init__ (self, parent, name, children, connections):
-        defaultName = 'default'
-        handler = PortHandler ('*', self.handle)
-        s = State (machine=self, name=defaultName, enter=None, handlers=[handler], exit=None, childMachine=None)
-        super ().__init__ (parent = parent,
-                        name = name,
-                        defaultStateName = defaultName,
-                        enter = self.noop,
-                        exit = self.noop,
-                        states = [s])
-
-    def noop (self):
-        pass
-
+class Container(Eh):
+    def __init__(self,givenName):
+        name = f'[Container/{givenName}]'
+        super().__init__(name)
+        # child must supply self.children, self.connections
         
-    def handle (self, message):
-        for connection in self._connections:
-            connection.guardedDeliver (message)
-        self.runToCompletion ()
+    def handle(self,msg):
+        self.routeDownwards(msg.port, msg.datum)
+        while (self.isAnyChildReady()):
+            self.dispatchAllChildren()
 
-    @property
-    def name (self):
-        return self._name
-    
-# helpers
-    def runToCompletion (self):
-        while self.anyChildReady ():
-            for child in self._children:
-                child.handleIfReady ()
-                self.routeOutputs (child)
+    def dispatchAllChildren(self):
+        for child in self.children:
+            if (isReady(child)):
+                msg = child.dequeueInput()
+                child.handle(msg)
+                self.routeAndClearOutputsFromSingleChild(child)
 
-    def anyChildReady (self):
-        r = False
-        for child in self._children:
-            if child.isReady ():
-                r = True
-        return r
+    def routeAndClearOutputsFromSingleChild(self,child):
+        for output in child.outputs():
+            self.routeChildOutput(child, output.port, output.datum)
+        child.clearOutputs()
 
-    def routeOutputs (self, child):
-        outputs = child.outputQueue ()
-        child.clearOutputs ()
-        for msg in outputs:
-            for conn in self._connections:
-                conn.guardedDeliver (msg)
+    def routeChildOutput(self, frm, port, datum):
+        # a child can produce messages only for other children (across), and,
+        # for output from its parent (up)
+        # down and through cannot apply here
+        self.route(frm, port, datum)
 
-    def inject (self, port, data):
-        m = TopMessage (xfrom=self, port=port, data=data)
-        self.injectMessage (m)
+    def routeDownwards(self, port, datum):
+        # an input message to a container can go 2 places: (1) to a child(ren), or
+        # (2) to its own output (Down and Through, resp).
+        # across and up cannot apply here
+        self.route(None, port, datum)
 
-    def start (self, port, data):
-        self.inject (port, data)
-        self.run()
+    def route(self, frm, port, datum):
+        fromSender = Sender(frm, port)
+        for connection in self.connections:
+            if (connection.sender_matches(fromSender)):
+                connection.deposit(datum)
+
+    def isAnyChildReady(self):
+        result = False
+        for child in self.children:
+            if (isReady(child)):
+                result = True
+        return result
+
+def isReady(child):
+    return not child.isInputEmpty() or not child.isOutputEmpty()

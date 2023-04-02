@@ -1,8 +1,10 @@
 from leaf import Leaf
 
 class Echo (Leaf):
-    def __handler__ (self, message):
-        self.send (xfrom=self, portname='stdout', data=message.data, cause=message)
+    def __init__(self,givenName):
+        super().__init__(f'[Echo/{givenName}]')
+    def handle (self, message):
+        self.send (port='stdout', datum=message.datum)
 
 
         

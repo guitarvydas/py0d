@@ -7,7 +7,7 @@ class FIFO:
         self._elements = deque()
 
     def enqueue(self, element):
-        self._elements.append(element)
+        return self._elements.append(element)
 
     def dequeue(self):
         return self._elements.popleft()
@@ -19,4 +19,7 @@ class FIFO:
         return (0 >= len (self._elements))
 
     def asList (self):
+        return list (self._elements)
+
+    def __repr__ (self):
         return list (self._elements)

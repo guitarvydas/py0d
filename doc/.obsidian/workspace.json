@@ -1,27 +1,19 @@
 {
   "main": {
-    "id": "d95fd29971418369",
+    "id": "f82a929f72021bdf",
     "type": "split",
     "children": [
       {
-        "id": "7a7b89b8d86104c5",
+        "id": "36112ba7d79d6cce",
         "type": "tabs",
         "children": [
           {
-            "id": "06f8db126b890d73",
+            "id": "a16debfd9face661",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
-            }
-          },
-          {
-            "id": "4bad21f94c00a9db",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
+              "type": "excalidraw",
               "state": {
-                "currentVersion": "1.0.0"
+                "file": "Excalidraw/tests 2023-04-02 07.52.46.excalidraw.md"
               }
             }
           }
@@ -31,15 +23,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "749fb5201f8deb4a",
+    "id": "fc09cf8758f00cc0",
     "type": "split",
     "children": [
       {
-        "id": "5ef494c0fd951da6",
+        "id": "5af791a5c52f5b33",
         "type": "tabs",
         "children": [
           {
-            "id": "14e3346300833293",
+            "id": "ebf9953cac2694d4",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -49,7 +41,7 @@
             }
           },
           {
-            "id": "4656e28a7ba7a134",
+            "id": "3fab48f83e182241",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -64,7 +56,7 @@
             }
           },
           {
-            "id": "b57215100f191465",
+            "id": "942020a800580341",
             "type": "leaf",
             "state": {
               "type": "starred",
@@ -78,19 +70,20 @@
     "width": 300
   },
   "right": {
-    "id": "69720cd5ed260966",
+    "id": "cdbf3a130dd1d09a",
     "type": "split",
     "children": [
       {
-        "id": "6685c51ff300a759",
+        "id": "93438e07ecd5ba44",
         "type": "tabs",
         "children": [
           {
-            "id": "80a016d966e3d95d",
+            "id": "bf4d8f5350a37266",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Excalidraw/tests 2023-04-02 07.52.46.excalidraw.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,18 +95,19 @@
             }
           },
           {
-            "id": "39721c0cb9918e20",
+            "id": "bf547cdabb2763b9",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Excalidraw/tests 2023-04-02 07.52.46.excalidraw.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "3f0f2853431c178d",
+            "id": "1f72a44f7efc7d9a",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -124,11 +118,13 @@
             }
           },
           {
-            "id": "a96f7db6a85670b1",
+            "id": "072552a2f977f9ed",
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Excalidraw/tests 2023-04-02 07.52.46.excalidraw.md"
+              }
             }
           }
         ]
@@ -149,15 +145,18 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "06f8db126b890d73",
+  "active": "a16debfd9face661",
   "lastOpenFiles": [
-    "Excalidraw/State as Drawing 2023-02-04 06.18.15.excalidraw.md",
-    "Excalidraw/HSM as Drawing 2023-02-04 06.42.41.excalidraw.md",
-    "Excalidraw/HSM Drawing 2023-02-03 22.27.19.excalidraw.md",
-    "Excalidraw/old HSM Drawing 2023-02-03 10.07.49.excalidraw.md",
-    "Excalidraw/State Drawing 2023-02-03 16.47.43.excalidraw.md",
-    "Excalidraw/Port Handler Drawing 2023-02-03 16.49.44.excalidraw.md",
-    "doc/sequential.png",
-    "README.md"
+    "tests.md",
+    "Excalidraw/tests 2023-04-02 08.35.26.excalidraw.md",
+    "Excalidraw/tests 2023-04-02 08.35.26.excalidraw.png",
+    "Excalidraw/tests 2023-04-02 07.52.46.excalidraw.md",
+    "Excalidraw/tests 2023-04-02 07.52.46.excalidraw.png",
+    "Excalidraw/tests 2023-04-02 07.17.47.excalidraw.png",
+    "Excalidraw/tests 2023-04-02 07.17.47.excalidraw.md",
+    "Excalidraw/tests 2023-03-22 16.30.08.excalidraw.md",
+    "Excalidraw/tests 2023-03-22 16.30.08.excalidraw.png",
+    "Excalidraw",
+    "feedback.png"
   ]
 }
