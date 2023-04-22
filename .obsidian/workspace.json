@@ -11,8 +11,10 @@
             "id": "06f8db126b890d73",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "excalidraw",
+              "state": {
+                "file": "doc/Excalidraw/tests 2023-03-22 16.30.08.excalidraw.md"
+              }
             }
           },
           {
@@ -91,6 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "doc/Excalidraw/tests 2023-03-22 16.30.08.excalidraw.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,6 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "doc/Excalidraw/tests 2023-03-22 16.30.08.excalidraw.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -128,7 +132,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "doc/Excalidraw/tests 2023-03-22 16.30.08.excalidraw.md"
+              }
             }
           }
         ]
@@ -151,13 +157,14 @@
   },
   "active": "06f8db126b890d73",
   "lastOpenFiles": [
+    "doc/tests.md",
+    "README.md",
     "Excalidraw/State as Drawing 2023-02-04 06.18.15.excalidraw.md",
     "Excalidraw/HSM as Drawing 2023-02-04 06.42.41.excalidraw.md",
     "Excalidraw/HSM Drawing 2023-02-03 22.27.19.excalidraw.md",
     "Excalidraw/old HSM Drawing 2023-02-03 10.07.49.excalidraw.md",
     "Excalidraw/State Drawing 2023-02-03 16.47.43.excalidraw.md",
     "Excalidraw/Port Handler Drawing 2023-02-03 16.49.44.excalidraw.md",
-    "doc/sequential.png",
-    "README.md"
+    "doc/sequential.png"
   ]
 }
